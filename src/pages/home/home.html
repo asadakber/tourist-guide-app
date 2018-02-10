@@ -1,0 +1,21 @@
+<ion-header>
+<ion-navbar color="primary">
+  <ion-title>Tourist Guide App</ion-title>
+  <ion-buttons end>
+    <button ion-button clear (click)="logout()">Signout</button>
+  </ion-buttons>
+</ion-navbar>
+
+</ion-header>
+
+<ion-content >
+  <ion-searchbar     class="search" (ionInput)="updateSearchResults()" [(ngModel)]="Destination"></ion-searchbar>
+  <ion-list [hidden]="autocompleteItems.length == 0">
+    <ion-item  *ngFor="let item of autocompleteItems" tappable (click)="calculateAndDisplayRoute(item)">
+      {{ item.description }}
+    </ion-item>
+  </ion-list>
+
+  <div  id="map"></div>
+
+</ion-content>

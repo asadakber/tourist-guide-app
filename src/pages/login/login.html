@@ -1,0 +1,38 @@
+<ion-header>
+<ion-navbar color="primary">
+  <ion-title>Login</ion-title>
+</ion-navbar>
+
+
+</ion-header>
+
+
+<ion-content padding>
+  <div style="margin-top:100px;"></div>
+    <form [formGroup]="loginForm">
+  <ion-list>
+    <ion-item >
+      <ion-label  floating>Email Address</ion-label>
+      <ion-input  formControlName="userEmail" type="text"></ion-input>
+    </ion-item>
+    <ion-item  class="error-message" *ngIf="!loginForm.controls.userEmail.valid  && loginForm.controls.userEmail.dirty">
+      <p style="color : red">Please enter a valid email.</p>
+    </ion-item>
+
+    <ion-item >
+        <ion-label   floating>Password</ion-label>
+        <ion-input  formControlName="userPassword"  type="password"></ion-input>
+      </ion-item>
+      <ion-item  class="error-message" *ngIf="loginForm.controls.userPassword?.errors?.minlength  && loginForm.controls.userPassword.dirty">
+        <p style="color : red">Your password needs more than 6 characters.</p>
+      </ion-item>
+      <ion-item  style="color : red" class="error-message" *ngIf="loginForm.controls.userPassword?.errors?.required && loginForm.controls.userPassword.dirty">
+        Password is required
+      </ion-item>
+  </ion-list>
+
+  <p>Don't have an account? </p>
+  <button  color="primary"  [disabled]="!this.loginForm.valid"  class="btn" block ion-button (click)="login()">Submit</button>
+  <button  color="primary"   class="btn" block ion-button (click)="register()">Register</button>
+</form>
+</ion-content>
